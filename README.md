@@ -1,6 +1,6 @@
-# mts-chatbot
+# MTS Chatbot
 
-**mts-chatbot** is a toolkit for quickly creating and deploying AI-powered chatbots. It provides pre-built templates with various functionalities, making it easy to get started with your own chatbot project.
+**MTS Chatbot** is a toolkit for quickly creating and deploying AI-powered chatbots. It provides pre-built templates with various functionalities, making it easy to get started with your own chatbot project.
 
 ## Features
 
