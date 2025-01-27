@@ -1,4 +1,4 @@
-name: dev
+name: npm publish
 on: [push]
 jobs:
   publish:
@@ -16,4 +16,4 @@ jobs:
       - name: 🏗 Publish npm
         run: npm publish --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.MTS_CHATBOT_NPM_ACCESS_TOKEN }}
