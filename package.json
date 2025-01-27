@@ -1,0 +1,56 @@
+{
+  "name": "mts-ai-chatbot",
+  "version": "0.0.1",
+  "description": "Quick and Easy Ai Chatbot Express + TypeScript",
+  "author": "Magic Tech Solutions <developer@magicgictechsoulutions.dev>",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "express",
+    "typeorm",
+    "prisma",
+    "graphql",
+    "node-postgres",
+    "logger",
+    "swagger",
+    "jest",
+    "nodemon",
+    "pm2",
+    "eslint",
+    "prettier",
+    "docker",
+    "docker-compose",
+    "nginx",
+    "swc"
+  ],
+  "main": "bin/cli.js",
+  "bin": {
+    "create-ai-chatbot": "bin/cli.js"
+  },
+  "scripts": {
+    "start": "node bin/cli.js"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "edit-json-file": "^1.5.0",
+    "gitignore": "^0.6.0",
+    "inquirer": "^6.5.2",
+    "ncp": "^2.0.0",
+    "ora": "^4.0.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">= 10.13.0",
+    "npm": ">= 6.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/magic-tech-solutions/mts-ai-chatbot"
+  },
+  "bugs": {
+    "url": "https://github.com/magic-tech-solutions/mts-ai-chatbot/issues"
+  },
+  "homepage": "https://github.com/magic-tech-solutions/mts-ai-chatbot#readme"
+}

@@ -1,0 +1,13 @@
+name: npm publish
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - package.json
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
