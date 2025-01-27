@@ -1,0 +1,38 @@
+name: npm publish
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - package.json
+  pull_request:
+    branches:
+      - main
+    paths:
+      - package.json
+
+jobs:
+  publish:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18 # Or your desired node version
+          registry-url: https://registry.npmjs.org/
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Authenticate with npm
+        run: |
+          echo "//registry.npmjs.org/:_authToken=${{ secrets.MTS_CHATBOT_NPM_ACCESS_TOKEN }}" > .npmrc
+
+      - name: Publish to npm
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.MTS_CHATBOT_NPM_ACCESS_TOKEN }}
