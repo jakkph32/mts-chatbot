@@ -61,7 +61,7 @@ mts-chatbot/
 
 1.  **Clone the repository:**
     ```bash
-    git clone https://github.com/your-username/mts-chatbot.git
+    git clone https://github.com/magic-tech-solutions/mts-chatbot.git
     cd mts-chatbot
     ```
 2.  **Install dependencies:**

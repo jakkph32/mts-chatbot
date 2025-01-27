@@ -12,6 +12,14 @@ export default [
     rules: {
       "no-unused-vars": "warn",
       "no-undef": "warn",
+      "@typescript-eslint/explicit-member-accessibility": "warn",
+      "@typescript-eslint/explicit-function-return-type": "warn",
+      "@typescript-eslint/no-parameter-properties": "warn",
+      "@typescript-eslint/interface-name-prefix": "warn",
+      "@typescript-eslint/explicit-module-boundary-types": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
+      "@typescript-eslint/ban-types": "warn",
+      "@typescript-eslint/no-var-requires": "warn",
     },
   },
   {
