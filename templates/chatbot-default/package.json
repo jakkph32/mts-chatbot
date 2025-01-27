@@ -1,8 +1,8 @@
 {
-  "name": "@magic-tech-solutions/chatbot_with_prisma",
+  "name": "@magic-tech-solutions/chatbot-default",
   "version": "0.0.1",
-  "description": "Prisma | Create Chatbot project with Prisma ORM packge mangement.",
-  "main": "index.js",
+  "description": "Default | Create Chatbot project with default packge mangement.",
+  "main": "src/server.ts",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon",
     "prod": "npm run build && cross-env NODE_ENV=production node dist/app.js",
@@ -11,8 +11,7 @@
     "lint": "eslint src/**/*.ts -c eslint.config.mjs",
     "lint:fix": "eslint src/**/*.ts --fix -c eslint.config.mjs",
     "format": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,md}\"",
-    "prisma:generate": "prisma generate --schema=./src/prisma/schema.prisma",
-    "prepare": "husky"
+    "prisma:generate": "prisma generate --schema=./src/prisma/schema.prisma"
   },
   "author": "",
   "license": "ISC",
@@ -55,17 +54,15 @@
     "@types/supertest": "^6.0.2",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.7",
-    "@typescript-eslint/eslint-plugin": "^8.21.0",
-    "@typescript-eslint/parser": "^8.21.0",
-    "@typescript-eslint/utils": "^8.21.0",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "@typescript-eslint/utils": "^8.22.0",
     "cross-env": "^7.0.3",
     "eslint": "^9.19.0",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
     "globals": "^15.14.0",
-    "husky": "^9.1.7",
     "jest": "^29.7.0",
-    "lint-staged": "^15.4.3",
     "node-config": "^0.0.2",
     "node-gyp": "^11.0.0",
     "nodemon": "^3.1.9",
@@ -76,10 +73,7 @@
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
-    "typescript-eslint": "^8.21.0",
+    "typescript-eslint": "^8.22.0",
     "typescript": "^5.7.3"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
   }
 }

@@ -1,0 +1,12 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+  - "templates/*"
+  - "scripts/*"
+  - "lib/*"
+  - "utils/*" # Add any other directories you want to include
+  - "!**/node_modules/**"
+  - "!**/dist/**"
+  - "!**/build/**"
+  - "!**/coverage/**"
+  - "!**/tmp/**"
