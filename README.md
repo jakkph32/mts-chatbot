@@ -57,71 +57,105 @@ mts-chatbot/
 
 ```
 
-## Getting Started
+## Project Setup Guide
 
-1.  **Clone the repository:**
+This document outlines the steps to set up a new project using the project starter script.
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or higher)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+- [Docker](https://www.docker.com/) (Optional, for containerization)
+- [Prisma CLI](https://www.prisma.io/docs/reference/prisma-cli-reference)
+
+## Installation
+
+1.  **Run the starter script:**
+    Open your terminal or command prompt and run the following command:
+
     ```bash
-    git clone https://github.com/magic-tech-solutions/mts-chatbot.git
-    cd mts-chatbot
+    npx create-mts-chatbot <optional-project-name>
     ```
-2.  **Install dependencies:**
+
+    - `<optional-project-name>` is an optional argument to give the project a name directly.
+
+    **If you don't provide a project name in argument:** The script will prompt you to enter a project name.
+
+    ```
+    What is your project name?
+    ```
+
+2.  **Choose a package manager:**
+    The script will prompt you to select a package manager:
+
+    ```
+    Choose a package manager
+        > npm
+        yarn
+        pnpm
+        bun
+    ```
+
+    Select your preferred package manager (`npm`, `yarn`, `pnpm`, or `bun`).
+
+3.  **Select a template:**
+    The script will list available templates. Choose the one that suits your needs:
+
+    ```
+    Select a template
+        > Chatbot_with_Prisma 🔹 A chatbot template with Prisma integration
+          ...
+    ```
+
+4.  **Project creation and dependency installation:**
+
+    - The script will create a new directory with your project name and copy template files.
+    - It will install the necessary Node.js dependencies using the selected package manager (npm/yarn/pnpm/bun).
+
+5.  **Post-installation scripts:**
+
+- Some templates might require additional steps, such as running `prisma generate` for the "Chatbot_with_Prisma" template.
+
+6.  **Initialize Git:**
+
+    - The script will automatically initialize a git repository within the project directory.
+
+7.  **Completion message:**
+    If all goes well, you'll see a "Complete setup project" message with additional instructions, if necessary, for the selected template.
+
+## Usage (Example for Chatbot_with_Prisma template)
+
+After setup for `Chatbot_with_Prisma` template, you'll see the message:
+
+```
+⛰ Prisma installed. Check your .env settings and then run `npm run prisma:migrate`
+```
+
+1.  **Configure environment variables:**
+
+    - Open the `.env` file in your project directory.
+    - Update the settings to match your database configuration or desired settings.
+
+2.  **Run database migrations (for Prisma templates):**
+    For `Chatbot_with_Prisma` template, run the following command to apply database changes:
 
     ```bash
-    npm install
+    npm run prisma:migrate
     ```
 
-3.  **Choose a template:**
+    If you use yarn, pnpm, or bun, use the `yarn run prisma:migrate`, `pnpm run prisma:migrate` or `bun run prisma:migrate` commands respectively.
 
-    - **Basic Chatbot Template:** Navigate to `templates/Chatbot`
-    - **Chatbot with Database Integration:** Navigate to `templates/Chatbot_with_Database`
+3.  **Start your application:**
+    Refer to the documentation of your selected template for the command to start the application (e.g., `npm run dev`).
 
-4.  **Configure Environment Variables:**
-    - Copy `sample.env.development.local` to `.env.development.local` and populate it with your development environment variables
-    - Copy `sample.env.production.local` to `.env.production.local` and populate it with your production environment variables
-5.  **Start Developing**
+## Troubleshooting
 
-- Navigate to the template you selected
-- Run in development
-
-  ```bash
-  npm run dev
-  ```
-
-- Run in production
-
-  ```bash
-   npm run prod
-  ```
-
-## Available Templates
-
-- **Chatbot:** A basic template for creating simple chatbots.
-- **Chatbot with Database:** A more advanced template that demonstrates chatbot integration with a database.
-
-## Development
-
-- **Running Locally (Root):**
-
-  - Run `npm run dev:root` to start the application in development mode. This will use `nodemon` and `ts-node` for hot-reloading.
-
-- **Running in Development (Templates):**
-
-  - Run `npm run dev` to start the application in development mode. This will use `nodemon` and `ts-node` for hot-reloading.
-
-- **Running in Production (Templates):**
-
-  - Run `npm run prod` to start the application in production mode.
-
-- **Code Formatting:**
-
-  - Run `npm run format` to automatically format your code with Prettier.
-
-- **Linting:**
-  - Run `npm run lint` to check for code errors and enforce code style with ESLint.
+- **Package manager not installed:** If the script fails because your chosen package manager (`npm`,`yarn`,`pnpm` or `bun`) is not installed, you need to install it first.
+- **Script errors:** If any errors happen during the process, copy the error message in your terminal and search the web or create an issue in this repo.
 
 ## Contributing
 
-Contributions are welcome! Feel free to submit a pull request.
+If you want to contribute or improve this script, please feel free to make changes and submit a pull request.
 
 ## License
 

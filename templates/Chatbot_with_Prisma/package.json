@@ -4,8 +4,9 @@
   "description": "Prisma | Create Chatbot project with Prisma ORM packge mangement.",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development nodemon --exec ts-node src/index.ts",
-    "prod": "cross-env NODE_ENV=production node dist/index.js",
+    "dev": "cross-env NODE_ENV=development nodemon",
+    "prod": "npm run build && cross-env NODE_ENV=production node dist/app.js",
+    "build": "swc src -d dist --source-maps --copy-files",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/**/*.ts -c eslint.config.mjs",
     "lint:fix": "eslint src/**/*.ts --fix -c eslint.config.mjs",

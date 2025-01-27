@@ -17,7 +17,6 @@ This template provides a foundation for building a chatbot application using Nod
 ## Project Structure
 
 ```
-
 ├── .husky/                     # Git hooks
 │   └── pre-commit             # Pre-commit hook
 ├── nginx.conf                 # Nginx configuration
@@ -33,75 +32,102 @@ This template provides a foundation for building a chatbot application using Nod
         └── schema.prisma      # Prisma schema definition
 ```
 
-## Getting Started
+## Project Setup Guide
+
+This document outlines the steps to set up a new project using the project starter script.
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v16 or higher)
+- [Node.js](https://nodejs.org/) (v18 or higher)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 - [Docker](https://www.docker.com/) (Optional, for containerization)
+- [Prisma CLI](https://www.prisma.io/docs/reference/prisma-cli-reference)
 
-### Installation
+## Installation
 
-1.  **Clone the repository:**
-    ```bash
-    git clone <repository_url>
-    cd <repository_directory>
-    ```
-2.  **Navigate to the template:**
-    ```bash
-    cd templates/Chatbot_with_Prisma
-    ```
-3.  **Install dependencies:**
+1.  **Run the starter script:**
+    Open your terminal or command prompt and run the following command:
 
     ```bash
-    npm install # or yarn install
+    npx create-mts-chatbot <optional-project-name>
     ```
 
-4.  **Setup environment variables:**
-    - Copy `sample.env.development.local` to `.env.development.local`
-    - Copy `sample.env.production.local` to `.env.production.local`
-    - Update the values in these files to match your environment.
+    - `<optional-project-name>` is an optional argument to give the project a name directly.
 
-### Development
+    **If you don't provide a project name in argument:** The script will prompt you to enter a project name.
 
-1.  **Run development server:**
+    ```
+    What is your project name?
+    ```
+
+2.  **Choose a package manager:**
+    The script will prompt you to select a package manager:
+
+    ```
+    Choose a package manager
+        > npm
+        yarn
+        pnpm
+        bun
+    ```
+
+    Select your preferred package manager (`npm`, `yarn`, `pnpm`, or `bun`).
+
+3.  **Select a template:**
+    The script will list available templates. Choose the one that suits your needs:
+
+    ```
+    Select a template
+        > Chatbot_with_Prisma 🔹 A chatbot template with Prisma integration
+          ...
+    ```
+
+4.  **Project creation and dependency installation:**
+
+    - The script will create a new directory with your project name and copy template files.
+    - It will install the necessary Node.js dependencies using the selected package manager (npm/yarn/pnpm/bun).
+
+5.  **Post-installation scripts:**
+
+- Some templates might require additional steps, such as running `prisma generate` for the "Chatbot_with_Prisma" template.
+
+6.  **Initialize Git:**
+
+    - The script will automatically initialize a git repository within the project directory.
+
+7.  **Completion message:**
+    If all goes well, you'll see a "Complete setup project" message with additional instructions, if necessary, for the selected template.
+
+## Usage (Example for Chatbot_with_Prisma template)
+
+After setup for `Chatbot_with_Prisma` template, you'll see the message:
+
+```
+⛰ Prisma installed. Check your .env settings and then run `npm run prisma:migrate`
+```
+
+1.  **Configure environment variables:**
+
+    - Open the `.env` file in your project directory.
+    - Update the settings to match your database configuration or desired settings.
+
+2.  **Run database migrations (for Prisma templates):**
+    For `Chatbot_with_Prisma` template, run the following command to apply database changes:
+
     ```bash
-    npm run dev # or yarn dev
+    npm run prisma:migrate
     ```
-2.  **Access the application in your browser**
-    - Typically at `http://localhost:3000`
-    - Check your `app.ts` configuration for port details
 
-### Prisma Setup
+    If you use yarn, pnpm, or bun, use the `yarn run prisma:migrate`, `pnpm run prisma:migrate` or `bun run prisma:migrate` commands respectively.
 
-1. **Install Prisma CLI (if not installed):**
-   ```bash
-   npm install prisma --save-dev
-   ```
-2. **Generate Prisma Client:**
-   ```bash
-   npx prisma generate
-   ```
-3. **Migrate database:**
-   ```bash
-   npx prisma migrate dev --name init
-   ```
+3.  **Start your application:**
+    Refer to the documentation of your selected template for the command to start the application (e.g., `npm run dev`).
 
-## Deployment
+## Troubleshooting
 
-1.  **Build the application:**
-    ```bash
-    npm run build # or yarn build
-    ```
-2.  **(Optional) Deploy with Docker:**
-    - Refer to the Docker documentation for best practices.
-    - Use the provided `nginx.conf` for server setup.
+- **Package manager not installed:** If the script fails because your chosen package manager (`npm`,`yarn`,`pnpm` or `bun`) is not installed, you need to install it first.
+- **Script errors:** If any errors happen during the process, copy the error message in your terminal and search the web or create an issue in this repo.
 
 ## Contributing
 
-Contributions are welcome! Please read the [CONTRIBUTING.md](link_to_contributing_file) file for guidelines.
-
-## License
-
-[MIT](LICENSE_FILE_LINK)
+If you want to contribute or improve this script, please feel free to make changes and submit a pull request.
