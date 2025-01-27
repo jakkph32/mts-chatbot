@@ -1,5 +1,5 @@
 {
-  "name": "mts-ai-chatbot",
+  "name": "mts-chatbot",
   "version": "0.0.1",
   "description": "Quick and Easy Ai Chatbot Express + TypeScript",
   "author": "Magic Tech Solutions <developer@magicgictechsoulutions.dev>",
@@ -28,15 +28,9 @@
     "create-mts-chatbot": "bin/cli.js"
   },
   "scripts": {
-    "start": "node bin/cli.js"
-  },
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "edit-json-file": "^1.5.0",
-    "gitignore": "^0.6.0",
-    "inquirer": "^6.5.2",
-    "ncp": "^2.0.0",
-    "ora": "^4.0.3"
+    "start": "node bin/cli.js",
+    "lint": "eslint ./**/*.js -c eslint.config.mjs",
+    "prepare": "husky"
   },
   "publishConfig": {
     "access": "public"
@@ -45,6 +39,9 @@
     "node": ">= 10.13.0",
     "npm": ">= 6.11.0"
   },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jakkph32/mts-chatbot"
@@ -52,5 +49,22 @@
   "bugs": {
     "url": "https://github.com/jakkph32/mts-chatbot/issues"
   },
-  "homepage": "https://github.com/jakkph32/mts-chatbot#readme"
+  "homepage": "https://github.com/jakkph32/mts-chatbot#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "edit-json-file": "^1.5.0",
+    "fs-extra": "^11.3.0",
+    "gitignore": "^0.6.0",
+    "inquirer": "^6.5.2",
+    "ncp": "^2.0.0",
+    "ora": "^4.0.3"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.4.3",
+    "prettier": "3.4.2"
+  }
 }
