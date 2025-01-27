@@ -4,6 +4,8 @@
   "description": "Prisma | Create Chatbot project with database packge mangement.",
   "main": "index.js",
   "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon --exec ts-node src/index.ts",
+    "prod": "cross-env NODE_ENV=production node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/**/*.ts -c eslint.config.mjs",
     "prepare": "husky"
@@ -16,10 +18,12 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "cross-env": "7.0.3",
     "eslint": "^9.19.0",
     "globals": "^15.14.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
+    "nodemon": "^3.1.9",
     "prettier": "3.4.2",
     "prisma": "^6.2.1",
     "typescript-eslint": "^8.21.0"
