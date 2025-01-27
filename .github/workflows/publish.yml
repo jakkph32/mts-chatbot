@@ -14,7 +14,10 @@ on:
 
 jobs:
   publish:
-    runs-on: self-hosted
+    runs-on: 
+    - self-hosted
+    - label-1
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
