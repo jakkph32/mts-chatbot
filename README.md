@@ -125,4 +125,4 @@ Contributions are welcome! Feel free to submit a pull request.
 
 ## License
 
-[Insert License Here]
+[MIT License](LICENSE)
