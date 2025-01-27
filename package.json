@@ -25,7 +25,7 @@
   ],
   "main": "bin/cli.js",
   "bin": {
-    "create-ai-chatbot": "bin/cli.js"
+    "create-mts-chatbot": "bin/cli.js"
   },
   "scripts": {
     "start": "node bin/cli.js"
@@ -47,10 +47,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/magic-tech-solutions/mts-ai-chatbot"
+    "url": "git+https://github.com/jakkph32/mts-chatbot"
   },
   "bugs": {
-    "url": "https://github.com/magic-tech-solutions/mts-ai-chatbot/issues"
+    "url": "https://github.com/jakkph32/mts-chatbot/issues"
   },
-  "homepage": "https://github.com/magic-tech-solutions/mts-ai-chatbot#readme"
+  "homepage": "https://github.com/jakkph32/mts-chatbot#readme"
 }
