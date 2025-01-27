@@ -1,5 +1,5 @@
 {
-  "name": "chatbot_with_database",
+  "name": "@magic-tech-solutions/chatbot_with_database",
   "version": "0.0.1",
   "description": "Prisma | Create Chatbot project with database packge mangement.",
   "main": "index.js",

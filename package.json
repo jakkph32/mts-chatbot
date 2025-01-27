@@ -1,6 +1,6 @@
 {
-  "name": "mts-chatbot",
-  "version": "0.0.1",
+  "name": "@magic-tech-solutions/mts-chatbot",
+  "version": "0.0.2",
   "description": "Quick and Easy Chatbot Express + TypeScript Project",
   "author": "Magic Tech Solutions <developer@magicgictechsoulutions.dev>",
   "license": "MIT",
@@ -27,20 +27,6 @@
   "bin": {
     "create-mts-chatbot": "bin/cli.js"
   },
-  "scripts": {
-    "start": "node bin/cli.js",
-    "lint": "eslint ./**/*.js -c eslint.config.mjs",
-    "lint:fix": "eslint ./**/*.js --fix -c eslint.config.mjs",
-    "format": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,md}\"",
-    "prepare": "husky"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "engines": {
-    "node": ">= 10.13.0",
-    "npm": ">= 6.11.0"
-  },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
   },
@@ -50,6 +36,17 @@
   },
   "bugs": {
     "url": "https://github.com/jakkph32/mts-chatbot/issues"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "lint": "eslint ./**/*.js -c eslint.config.mjs",
+    "lint:fix": "eslint ./**/*.js --fix -c eslint.config.mjs",
+    "format": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,md}\"",
+    "prepare": "husky"
+  },
+  "engines": {
+    "node": ">= 10.13.0",
+    "npm": ">= 6.11.0"
   },
   "homepage": "https://github.com/jakkph32/mts-chatbot#readme",
   "dependencies": {

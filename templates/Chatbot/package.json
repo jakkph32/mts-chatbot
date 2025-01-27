@@ -1,5 +1,5 @@
 {
-  "name": "chatbot-default",
+  "name": "@magic-tech-solutions/chatbot-default",
   "version": "0.0.1",
   "description": "Default | Create Chatbot project with default packages.",
   "main": "index.js",
