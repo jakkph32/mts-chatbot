@@ -1,0 +1,19 @@
+name: dev
+on: [push]
+jobs:
+  publish:
+    runs-on: [self-hosted, linux, x64]
+    steps:
+      - name: ⬇️ Checkout source code
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup nodejs
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+
+      - name: 🏗 Publish npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
