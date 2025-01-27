@@ -75,7 +75,7 @@ const createProject = async () => {
 };
 
 const getTemplateDir = async () => {
-  const contents = await readDir(path.join(__dirname, "../templates"), {
+  const contents = await readDir(path.join(__dirname, "../apps"), {
     withFileTypes: true,
   });
   const directories = contents
@@ -93,7 +93,7 @@ const chooseTemplates = async () => {
     try {
       const packageJsonPath = path.join(
         __dirname,
-        "../templates",
+        "../apps",
         dir,
         "package.json",
       );
@@ -124,7 +124,7 @@ const chooseTemplates = async () => {
 };
 
 const copyProjectFiles = async (projectName, template) => {
-  const source = path.join(__dirname, "../templates", template);
+  const source = path.join(__dirname, "../apps", template);
   const destination = path.join(process.cwd(), projectName);
 
   try {

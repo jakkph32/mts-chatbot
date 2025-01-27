@@ -1,6 +1,6 @@
 {
   "name": "@magic-tech-solutions/mts-chatbot",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Quick and Easy Chatbot Express + TypeScript Project",
   "author": "Magic Tech Solutions <developer@magicgictechsoulutions.dev>",
   "license": "MIT",
@@ -27,15 +27,16 @@
     "npm": ">= 6.11.0"
   },
   "devDependencies": {
+    "@types/node": "22.10.10",
     "chalk": "^4.1.2",
     "edit-json-file": "^1.5.0",
+    "eslint": "^9.19.0",
     "fs-extra": "^11.3.0",
     "gitignore": "^0.6.0",
+    "globals": "^15.14.0",
     "inquirer": "^6.5.2",
     "ncp": "^2.0.0",
     "ora": "^4.0.3",
-    "eslint": "^9.19.0",
-    "globals": "^15.14.0",
     "prettier": "3.4.2"
   },
   "keywords": [
