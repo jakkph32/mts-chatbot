@@ -30,6 +30,8 @@
   "scripts": {
     "start": "node bin/cli.js",
     "lint": "eslint ./**/*.js -c eslint.config.mjs",
+    "lint:fix": "eslint ./**/*.js --fix -c eslint.config.mjs",
+    "format": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,md}\"",
     "prepare": "husky"
   },
   "publishConfig": {

@@ -83,9 +83,9 @@ mts-chatbot/
 - Navigate to the template you selected
 - Run in development
 
-```bash
- npm run dev
-```
+  ```bash
+  npm run dev
+  ```
 
 - Run in production
 

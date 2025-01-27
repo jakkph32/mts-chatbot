@@ -8,6 +8,8 @@
     "prod": "cross-env NODE_ENV=production node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint src/**/*.ts -c eslint.config.mjs",
+    "lint:fix": "eslint src/**/*.ts --fix -c eslint.config.mjs",
+    "format": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,md}\"",
     "prepare": "husky"
   },
   "author": "",
