@@ -11,6 +11,7 @@ jobs:
   publish:
     runs-on: self-hosted
     if: github.event_name == 'push' # Run only on push event
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
