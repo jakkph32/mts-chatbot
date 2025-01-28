@@ -70,12 +70,19 @@ const createProject = async () => {
 };
 
 const getTemplateDir = async () => {
-  const contents = await readDir(path.join(path.resolve(), 'apps'), {
-    withFileTypes: true,
-  });
-  const directories = contents.filter(p => p.isDirectory()).map(p => p.name);
+  const appsPath = path.join(path.resolve(), 'apps');
+  console.log(`Checking directory: ${appsPath}`); // Debug log
 
-  return directories;
+  try {
+    const contents = await readDir(appsPath, {
+      withFileTypes: true,
+    });
+    const directories = contents.filter(p => p.isDirectory()).map(p => p.name);
+    return directories;
+  } catch (error) {
+    console.error(`Error reading directory ${appsPath}:`, error);
+    throw error;
+  }
 };
 
 const chooseTemplates = async () => {
