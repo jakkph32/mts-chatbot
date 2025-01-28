@@ -1,27 +1,27 @@
-name: pnpm publish
+# name: pnpm publish
 
-on: [push]
+# on: [push]
 
-jobs:
-  publish:
-    runs-on: [self-hosted, linux, x64]
-    steps:
-      - name: ⬇️ Checkout source code
-        uses: actions/checkout@v2
+# jobs:
+#   publish:
+#     runs-on: [self-hosted, linux, x64]
+#     steps:
+#       - name: ⬇️ Checkout source code
+#         uses: actions/checkout@v2
 
-      - name: ⎔ Setup nodejs
-        uses: actions/setup-node@v1
-        with:
-          node-version: 19
-          registry-url: https://registry.npmjs.org/
+#       - name: ⎔ Setup nodejs
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: 19
+#           registry-url: https://registry.npmjs.org/
 
-      - name: 📦 Install pnpm
-        run: npm install -g pnpm
+#       - name: 📦 Install pnpm
+#         run: npm install -g pnpm
 
-      - name: 📦 Install dependencies
-        run: pnpm install
+#       - name: 📦 Install dependencies
+#         run: pnpm install
 
-      - name: 🏗 Publish npm
-        run: pnpm publish --access public
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.MTS_CHATBOT_NPM_ACCESS_TOKEN }}
+#       - name: 🏗 Publish npm
+#         run: pnpm publish --access public
+#         env:
+#           NODE_AUTH_TOKEN: ${{ secrets.MTS_CHATBOT_NPM_ACCESS_TOKEN }}
