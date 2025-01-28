@@ -1,12 +1,7 @@
 {
   "name": "@magic-tech-solutions/mts-chatbot",
-<<<<<<< HEAD
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "Quick and Easy Chatbot Express + TypeScript Project",
-=======
-  "version": "0.0.24",
-  "description": "Quick and Easy create many apps from Magic Tech Solutions",
->>>>>>> f1fcf5c2adab1ab589b88762d89d499dcd84a986
   "author": "Magic Tech Solutions <developer@magicgictechsoulutions.dev>",
   "license": "MIT",
   "main": "scripts/cli.js",
