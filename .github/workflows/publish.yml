@@ -12,7 +12,7 @@ jobs:
       - name: ⎔ Setup nodejs
         uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 19
           registry-url: https://registry.npmjs.org/
 
       - name: 📦 Install pnpm
