@@ -1,11 +1,10 @@
 {
   "name": "@magic-tech-solutions/mts-chatbot",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "Quick and Easy create many apps from Magic Tech Solutions",
   "author": "Magic Tech Solutions <developer@magicgictechsoulutions.dev>",
   "license": "MIT",
   "main": "scripts/cli.js",
-  "type": "module",
   "bin": {
     "create-mts-app": "scripts/cli.js"
   },
