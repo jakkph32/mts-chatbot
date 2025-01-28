@@ -1,6 +1,6 @@
 {
   "name": "@magic-tech-solutions/mts-chatbot",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Quick and Easy create many apps from Magic Tech Solutions",
   "author": "Magic Tech Solutions <developer@magicgictechsoulutions.dev>",
   "license": "MIT",
@@ -24,7 +24,7 @@
     "format": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,md}\""
   },
   "engines": {
-    "node": ">= 10.13.0",
+    "node": ">= v18.12.0",
     "pnpm": ">= 8.0.0"
   },
   "devDependencies": {
