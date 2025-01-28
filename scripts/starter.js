@@ -1,23 +1,22 @@
-const chalk = require("chalk");
-const { exec } = require("child_process");
-const editJsonFile = require("edit-json-file");
-const { createWriteStream, readdir } = require("fs");
-const { writeFile } = require("gitignore");
-const inquirer = require("inquirer");
-const ora = require("ora");
-const path = require("path");
-const { promisify } = require("util");
-const { cp, mkdir } = require("node:fs/promises");
+const { exec } = require('child_process');
+const editJsonFile = require('edit-json-file');
+const { createWriteStream, readdir } = require('fs');
+const { writeFile } = require('gitignore');
+const inquirer = require('inquirer');
+const ora = require('ora');
+const path = require('path');
+const { promisify } = require('util');
+const { cp, mkdir } = require('node:fs/promises');
+const chalk = require('chalk');
 
 const readDir = promisify(readdir);
 const asyncExec = promisify(exec);
 const writeGitignore = promisify(writeFile);
+const spinner = ora()
 
 const createProject = async () => {
-  let spinner;
   let projectName;
 
-  // ตรวจสอบว่ามีชื่อโปรเจคจาก argument หรือไม่
   const projectNameArg = process.argv[2];
   if (projectNameArg) {
     projectName = projectNameArg;
@@ -25,11 +24,13 @@ const createProject = async () => {
   } else {
     const answer = await inquirer.prompt([
       {
-        type: "input",
-        name: "projectName",
-        message: "What is your project name?",
-        validate: (input) =>
-          input.trim() !== "" || "Project name cannot be empty",
+        type: 'input',
+        name: 'projectName',
+        message: 'What is your project name?',
+        validate: input => {
+          const isValid = /^[a-z0-9-]+$/.test(input.trim());
+          return isValid || 'Project name can only contain lowercase letters, numbers, and hyphens';
+        },
       },
     ]);
     projectName = answer.projectName;
@@ -37,50 +38,44 @@ const createProject = async () => {
 
   const { packageManager } = await inquirer.prompt([
     {
-      type: "list",
-      name: "packageManager",
-      message: "Choose a package manager",
-      choices: ["npm", "yarn", "pnpm", "bun"],
-      default: "npm",
+      type: 'list',
+      name: 'packageManager',
+      message: 'Choose a package manager',
+      choices: ['npm', 'yarn', 'pnpm', 'bun'],
+      default: 'npm',
     },
   ]);
 
   try {
     const template = await chooseTemplates();
 
-    console.log("[ 1 / 3 ] 🔍  copying project...");
-    console.log("[ 2 / 3 ] 🚚  fetching node_modules...");
+    console.log('[ 1 / 3 ] 🔍  copying project...');
+    console.log('[ 2 / 3 ] 🚚  fetching node_modules...');
 
     await copyProjectFiles(projectName, template);
     await updatePackageJson(projectName);
 
-    console.log("[ 3 / 3 ] 🔗  linking node_modules...");
-    console.log(
-      "\u001b[2m──────────────────────────────────────────\u001b[22m",
-    );
+    console.log('[ 3 / 3 ] 🔗  linking node_modules...');
+    console.log('\u001b[2m──────────────────────────────────────────\u001b[22m');
 
-    spinner = ora();
     spinner.start();
 
-    await installNodeModules(projectName, spinner, packageManager);
-    await postInstallScripts(projectName, template, spinner, packageManager);
-
-    await createGitignore(projectName, spinner);
+    await installNodeModules(projectName, packageManager);
+    await postInstallScripts(projectName, template, packageManager);
+    await createGitignore(projectName);
     await initGit(projectName);
 
-    await succeedConsole(template, spinner);
+    await succeedConsole(template);
   } catch (error) {
-    await failConsole(error, spinner);
+    await failConsole(error);
   }
 };
 
 const getTemplateDir = async () => {
-  const contents = await readDir(path.join(__dirname, "../apps"), {
+  const contents = await readDir(path.join(__dirname, '../apps'), {
     withFileTypes: true,
   });
-  const directories = contents
-    .filter((p) => p.isDirectory())
-    .map((p) => p.name);
+  const directories = contents.filter(p => p.isDirectory()).map(p => p.name);
 
   return directories;
 };
@@ -91,31 +86,22 @@ const chooseTemplates = async () => {
 
   for (const dir of directories) {
     try {
-      const packageJsonPath = path.join(
-        __dirname,
-        "../apps",
-        dir,
-        "package.json",
-      );
+      const packageJsonPath = path.join(__dirname, '../apps', dir, 'package.json');
       const packageJson = require(packageJsonPath);
-      const description = packageJson.description || "";
+      const description = packageJson.description || '';
       choices.push({ name: `${dir}🔹 ${description}`, value: dir });
     } catch (error) {
       // Handle error if package.json doesn't exist or can't be parsed
       choices.push({ name: dir, value: dir }); // show only name if error
-      console.error(
-        chalk.yellow(
-          `Warning: Could not read description for template ${dir}.`,
-        ),
-      );
+      console.error(chalk.yellow(`Warning: Could not read description for template ${dir}.`));
     }
   }
 
   const { chooseTemplates } = await inquirer.prompt([
     {
-      type: "list",
-      name: "chooseTemplates",
-      message: "Select a template",
+      type: 'list',
+      name: 'chooseTemplates',
+      message: 'Select a template',
       choices: [...choices, new inquirer.Separator()],
     },
   ]);
@@ -124,7 +110,7 @@ const chooseTemplates = async () => {
 };
 
 const copyProjectFiles = async (projectName, template) => {
-  const source = path.join(__dirname, "../apps", template);
+  const source = path.join(__dirname, '../apps', template);
   const destination = path.join(process.cwd(), projectName);
 
   try {
@@ -132,20 +118,17 @@ const copyProjectFiles = async (projectName, template) => {
     await cp(source, destination, { recursive: true });
     return;
   } catch (error) {
-    console.error("Error during file copy:", error);
+    console.error('Error during file copy:', error);
     throw error;
   }
 };
 
-const updatePackageJson = async (projectName) => {
-  const file = editJsonFile(
-    `${path.join(process.cwd(), projectName)}/package.json`,
-    { autosave: true },
-  );
-  file.set("name", projectName);
+const updatePackageJson = async projectName => {
+  const file = editJsonFile(`${path.join(process.cwd(), projectName)}/package.json`, { autosave: true });
+  file.set('name', projectName);
 };
 
-const checkPackageManagerInstalled = async (packageManager) => {
+const checkPackageManagerInstalled = async packageManager => {
   try {
     await asyncExec(`${packageManager} --version`);
     return true;
@@ -154,108 +137,98 @@ const checkPackageManagerInstalled = async (packageManager) => {
   }
 };
 
-const installNodeModules = async (destination, spinner, packageManager) => {
+const installNodeModules = async (destination, packageManager) => {
   spinner.text = `Install node_modules with ${packageManager}...\n`;
 
-  const isPackageManagerInstalled =
-    await checkPackageManagerInstalled(packageManager);
+  const isPackageManagerInstalled = await checkPackageManagerInstalled(packageManager);
   if (!isPackageManagerInstalled) {
-    spinner.fail(
-      chalk.red(
-        `\n❌ ${packageManager} is not installed. Please install it and try again.\n`,
-      ),
-    );
+    spinner.fail(chalk.red(`\n❌ ${packageManager} is not installed. Please install it and try again.\n`));
     process.exit(1);
   }
 
-  let installCommand = "";
+  let installCommand = '';
   switch (packageManager) {
-    case "npm":
-      installCommand = "npm install --legacy-peer-deps";
+    case 'npm':
+      installCommand = 'npm install --legacy-peer-deps';
       break;
-    case "yarn":
-      installCommand = "yarn install";
+    case 'yarn':
+      installCommand = 'yarn install';
       break;
-    case "pnpm":
-      installCommand = "pnpm install";
+    case 'pnpm':
+      installCommand = 'pnpm install';
       break;
-    case "bun":
-      installCommand = "bun install";
+    case 'bun':
+      installCommand = 'bun install';
       break;
     default:
-      installCommand = "npm install --legacy-peer-deps";
+      installCommand = 'npm install --legacy-peer-deps';
   }
   await asyncExec(installCommand, { cwd: destination });
 };
 
 const getScriptCommand = (packageManager, scriptName) => {
   switch (packageManager) {
-    case "npm":
+    case 'npm':
       return `npm run ${scriptName}`;
-    case "yarn":
+    case 'yarn':
       return `yarn run ${scriptName}`;
-    case "pnpm":
+    case 'pnpm':
       return `pnpm run ${scriptName}`;
-    case "bun":
+    case 'bun':
       return `bun run ${scriptName}`;
     default:
       return `npm run ${scriptName}`;
   }
 };
 
-const runScript = async (destination, spinner, packageManager, scriptName) => {
+const runScript = async (destination, packageManager, scriptName) => {
   const scriptCommand = getScriptCommand(packageManager, scriptName);
   try {
     await asyncExec(scriptCommand, { cwd: destination });
   } catch (error) {
-    spinner.warn(
-      chalk.yellow(
-        `\n⚠️ Failed to run ${scriptName}, you may need to run it manually. \n`,
-      ),
-    );
+    spinner.warn(chalk.yellow(`\n⚠️ Failed to run ${scriptName}, you may need to run it manually. \n`));
     console.error(chalk.red(`\n❌ Error: ${error.message}\n`));
   }
 };
 
-const postInstallScripts = async (destination, template, spinner) => {
+const postInstallScripts = async (destination, template) => {
   switch (template) {
-    case "Chatbot_with_Prisma":
+    case 'Chatbot_with_Prisma':
       {
-        spinner.text = "Run prisma generate...";
-        await asyncExec("npm run prisma:generate", { cwd: destination }); // แก้ไข cwd
+        spinner.text = 'Run prisma generate...';
+        await asyncExec('npm run prisma:generate', { cwd: destination }); // แก้ไข cwd
       }
       break;
   }
 };
 
-const createGitignore = async (destination, spinner) => {
-  spinner.text = "Create .gitignore...";
-  const file = createWriteStream(path.join(destination, ".gitignore"), {
-    flags: "a",
+const createGitignore = async (destination) => {
+  spinner.text = 'Create .gitignore...';
+  const file = createWriteStream(path.join(destination, '.gitignore'), {
+    flags: 'a',
   });
 
   return writeGitignore({
-    type: "Node",
+    type: 'Node',
     file: file,
   });
 };
 
-const initGit = async (destination) => {
-  await asyncExec("git init", { cwd: destination });
+const initGit = async destination => {
+  await asyncExec('git init', { cwd: destination });
 };
 
-const succeedConsole = async (template, spinner) => {
+const succeedConsole = async (template) => {
   spinner.succeed(chalk`{green 🎉 Complete setup project}`);
   const msg = {
-    prisma:
-      "⛰ Prisma installed. Check your .env settings and then run `npm run prisma:migrate`",
-    knex: "⛰ Knex installed. Check your .env settings and then run `npm run migrate`",
-  }[template || ""];
+    prisma: '⛰ Prisma installed. Check your .env settings and then run `npm run prisma:migrate`',
+    knex: '⛰ Knex installed. Check your .env settings and then run `npm run migrate`',
+  }[template || ''];
 
   msg && console.log(msg);
 };
 
-const failConsole = async (error, spinner) => {
+const failConsole = async (error) => {
   spinner.fail(chalk`{red Please leave this error as an issue}`);
   console.error(error);
 };
