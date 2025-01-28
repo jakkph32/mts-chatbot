@@ -1,60 +1,35 @@
-# MTS Chatbot
+# Chatbot Template with Prisma
 
-**MTS Chatbot** is a toolkit for quickly creating and deploying AI-powered chatbots. It provides pre-built templates with various functionalities, making it easy to get started with your own chatbot project.
+This template provides a foundation for building a chatbot application using Node.js and TypeScript, enhanced with Prisma for database interactions. It includes pre-configured settings for development and production environments, along with tools for linting, formatting, and deployment.
 
 ## Features
 
-- **Template-based:** Choose from a variety of chatbot templates to fit your needs.
-- **Easy to Customize:** All templates are designed to be easily customized to your specific requirements.
-- **Environment Variable Management:** Utilizes `.env` files and `cross-env` for seamless environment variable management across different operating systems.
-- **Development and Production Ready:** Includes scripts for both development and production builds, leveraging `nodemon` and `ts-node` for development efficiency.
-- **Linting and Formatting:** Pre-configured with ESLint and Prettier to maintain code quality and consistency.
-- **Version Control:** Pre-configured with Husky for pre-commit hooks to enforce code quality before committing.
+- **Node.js and TypeScript:** Built with modern JavaScript practices and strong typing for robust development.
+- **Prisma ORM:** Simplifies database interactions with a type-safe and intuitive API.
+- **Environment Configuration:** Includes sample environment files for both development and production.
+- **Pre-configured Tooling:**
+  - **ESLint:** For code linting and quality.
+  - **Prettier:** For code formatting and consistency.
+  - **Husky:** For Git hooks to enforce pre-commit checks.
+- **Nginx Configuration:** Ready-to-use Nginx configuration for easy deployment.
+- **Swagger Documentation:** Swagger YAML file included for API documentation.
 
 ## Project Structure
 
 ```
-mts-chatbot/
-  ├── .npmignore               # Files to ignore when publishing to npm
-  ├── .npmrc                  # npm configuration
-  ├── .prettierignore          # Files to ignore for Prettier formatting
-  ├── .prettierrc             # Prettier configuration
-  ├── eslint.config.mjs      # ESLint configuration
-  ├── package.json            # Project dependencies and scripts
-  ├── README.md               # This file
-  ├── templates/               # Contains chatbot templates
-  │   ├── Chatbot_with_Database/ # Chatbot with database integration template
-  │   │   ├── .prettierignore
-  │   │   ├── .prettierrc
-  │   │   ├── eslint.config.mjs
-  │   │   ├── package.json
-  │   │   ├── sample.env.development.local # Example development env file
-  │   │   ├── sample.env.production.local  # Example production env file
-  │   │   ├── src/             # Source code for template
-  │   │   │   └── app.ts
-  │   │   └── .husky/           # Husky pre-commit hook
-  │   │        └── pre-commit
-  │   ├── Chatbot/              # Basic chatbot template
-  │   │   ├── .prettierignore
-  │   │   ├── .prettierrc
-  │   │   ├── eslint.config.mjs
-  │   │   ├── package.json
-  │   │   ├── sample.env.development.local
-  │   │   ├── sample.env.production.local
-  │   │   ├── src/
-  │   │   │   └── app.ts
-  │   │   └── .husky/
-  │   │       └── pre-commit
-  ├── lib/                    # Library files
-  │   ├── gitignore.d.ts
-  │   └── starter.js
-  ├── .husky/                  # Root Husky configuration
-  │   └── pre-commit
-  └── .github/                 # Github related files
-      ├── README.md           # README for GitHub
-      └── workflows/          # Github workflows
-          └── publish.yml     # Workflow for publishing to NPM
-
+├── .husky/                     # Git hooks
+│   └── pre-commit             # Pre-commit hook
+├── nginx.conf                 # Nginx configuration
+├── package.json               # Project dependencies and scripts
+├── README.md                  # This README file
+├── sample.env.development.local # Sample development environment variables
+├── sample.env.production.local # Sample production environment variables
+├── swagger.yml                # Swagger API definition
+├── tsconfig.json              # TypeScript configuration
+└── src/                       # Source code directory
+    ├── app.ts                # Main application file
+    └── prisma/                 # Prisma related files
+        └── schema.prisma      # Prisma schema definition
 ```
 
 ## Project Setup Guide
@@ -156,7 +131,3 @@ After setup for `Chatbot_with_Prisma` template, you'll see the message:
 ## Contributing
 
 If you want to contribute or improve this script, please feel free to make changes and submit a pull request.
-
-## License
-
-[MIT License](LICENSE)

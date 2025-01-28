@@ -1,34 +1,17 @@
 {
   "name": "@magic-tech-solutions/mts-chatbot",
+<<<<<<< HEAD
   "version": "0.0.26",
   "description": "Quick and Easy Chatbot Express + TypeScript Project",
+=======
+  "version": "0.0.24",
+  "description": "Quick and Easy create many apps from Magic Tech Solutions",
+>>>>>>> f1fcf5c2adab1ab589b88762d89d499dcd84a986
   "author": "Magic Tech Solutions <developer@magicgictechsoulutions.dev>",
   "license": "MIT",
-  "keywords": [
-    "typescript",
-    "express",
-    "typeorm",
-    "prisma",
-    "graphql",
-    "node-postgres",
-    "logger",
-    "swagger",
-    "jest",
-    "nodemon",
-    "pm2",
-    "eslint",
-    "prettier",
-    "docker",
-    "docker-compose",
-    "nginx",
-    "swc"
-  ],
-  "main": "bin/cli.js",
+  "main": "scripts/cli.js",
   "bin": {
-    "create-mts-chatbot": "bin/cli.js"
-  },
-  "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "create-mts-app": "scripts/cli.js"
   },
   "homepage": "https://github.com/magic-tech-solutions/mts-chatbot#readme",
   "repository": {
@@ -39,31 +22,41 @@
     "url": "https://github.com/magic-tech-solutions/mts-chatbot/issues"
   },
   "scripts": {
-    "start": "node bin/cli.js",
+    "start": "node scripts/cli.js",
     "lint": "eslint ./**/*.js -c eslint.config.mjs",
     "lint:fix": "eslint ./**/*.js --fix -c eslint.config.mjs",
-    "format": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,md}\"",
-    "prepare": "husky"
+    "format": "prettier --write \"**/*.{js,json,ts,tsx,css,scss,md}\""
   },
   "engines": {
-    "node": ">= 10.13.0",
-    "npm": ">= 6.11.0"
-  },
-  "dependencies": {
-    "chalk": "^4.1.2",
-    "edit-json-file": "^1.5.0",
-    "fs-extra": "^11.3.0",
-    "gitignore": "^0.6.0",
-    "inquirer": "^6.5.2",
-    "ncp": "^2.0.0",
-    "ora": "^4.0.3"
+    "node": ">= v18.12.0",
+    "pnpm": ">= 8.0.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.19.0",
+    "@types/node": "22.10.10",
+    "chalk": "^5.4.1",
+    "edit-json-file": "^1.8.0",
     "eslint": "^9.19.0",
+    "fs-extra": "^11.3.0",
+    "gitignore": "^0.7.0",
     "globals": "^15.14.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^15.4.3",
+    "inquirer": "^12.3.2",
+    "ncp": "^2.0.0",
+    "ora": "^8.1.1",
     "prettier": "3.4.2"
-  }
+  },
+  "keywords": [
+    "typescript",
+    "express",
+    "prisma",
+    "graphql",
+    "logger",
+    "swagger",
+    "nodemon",
+    "eslint",
+    "prettier",
+    "docker",
+    "docker-compose",
+    "nginx",
+    "swc"
+  ]
 }

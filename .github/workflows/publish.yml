@@ -1,5 +1,7 @@
-name: npm publish
+name: pnpm publish
+
 on: [push]
+
 jobs:
   publish:
     runs-on: [self-hosted, linux, x64]
@@ -10,13 +12,16 @@ jobs:
       - name: ⎔ Setup nodejs
         uses: actions/setup-node@v1
         with:
-          node-version: 16
+          node-version: 19
           registry-url: https://registry.npmjs.org/
 
+      - name: 📦 Install pnpm
+        run: npm install -g pnpm
+
       - name: 📦 Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: 🏗 Publish npm
-        run: npm publish --access public
+        run: pnpm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MTS_CHATBOT_NPM_ACCESS_TOKEN }}
