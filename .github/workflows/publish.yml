@@ -25,3 +25,4 @@ jobs:
         run: pnpm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.MTS_CHATBOT_NPM_ACCESS_TOKEN }}
+          
