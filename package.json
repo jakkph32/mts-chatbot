@@ -1,20 +1,12 @@
 {
   "name": "@magic-tech-solutions/mts-chatbot",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "Quick and Easy Chatbot Express + TypeScript Project",
   "author": "Magic Tech Solutions <developer@magicgictechsoulutions.dev>",
   "license": "MIT",
   "main": "scripts/cli.js",
   "bin": {
     "create-mts-app": "scripts/cli.js"
-  },
-  "homepage": "https://github.com/magic-tech-solutions/mts-chatbot#readme",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/magic-tech-solutions/mts-chatbot.git"
-  },
-  "bugs": {
-    "url": "https://github.com/magic-tech-solutions/mts-chatbot/issues"
   },
   "scripts": {
     "start": "node scripts/cli.js",
